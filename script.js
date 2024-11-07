@@ -35,12 +35,18 @@ const display = document.getElementById('display');
 //REFACTOR: separate functions for input buttons and function buttons
 buttons.addEventListener('click', (e) =>{
   if (e.target.classList.contains('btn-input')) {
-    if (display.value !== '0' && !previousButtonIsFunction) {
+    //if it's zero we need to replace it if not decimal
+    //if previous was a function we need to start display from scratch
+    //no more than one decimal in number
+    if (display.value !== '0' && !previousButtonIsFunction && !(e.target.value === '.')) {
       display.value += e.target.value;
+    } else if (e.target.value === '.'){
+      if (!display.value.includes('.')) display.value += e.target.value;
+      if (previousButtonIsFunction) display.value = '0.';
     } else {
       display.value = e.target.value;
-      previousButtonIsFunction = false;
     }
+    previousButtonIsFunction = false;
   } else if (e.target.classList.contains('btn-function')) {  
     if (e.target.id === 'btn-divide') {
       if (mathOperation !== '') calculateAndDisplay();
@@ -64,7 +70,7 @@ buttons.addEventListener('click', (e) =>{
       mathOperation = '';
       display.value = 0;
     } else if (e.target.id === 'btn-equal') {
-      calculateAndDisplay();
+      if (mathOperation) calculateAndDisplay();
     }
     previousButtonIsFunction = true;
   } 
@@ -72,5 +78,8 @@ buttons.addEventListener('click', (e) =>{
 
 function calculateAndDisplay() {
   arg2 = Number(display.value);
-  display.value = operate(mathOperation, arg1, arg2);
+  let result = operate(mathOperation, arg1, arg2);
+  //to round the result
+  if (result.toString().split('.')[1].length >= 10) result = Math.round(result * 100000000) / 100000000; 
+  display.value = result;
 }
