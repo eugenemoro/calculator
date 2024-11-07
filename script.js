@@ -41,41 +41,36 @@ buttons.addEventListener('click', (e) =>{
       display.value = e.target.value;
       previousButtonIsFunction = false;
     }
-  } else if (e.target.classList.contains('btn-function')) {
+  } else if (e.target.classList.contains('btn-function')) {  
+    if (e.target.id === 'btn-divide') {
+      if (mathOperation !== '') calculateAndDisplay();
+      arg1 = Number(display.value);
+      mathOperation = 'divide';
+    } else if (e.target.id === 'btn-multiply') {
+      if (mathOperation !== '') calculateAndDisplay();
+      arg1 = Number(display.value);
+      mathOperation = 'multiply';
+    } else if (e.target.id === 'btn-add') {
+      if (mathOperation !== '') calculateAndDisplay();
+      arg1 = Number(display.value);
+      mathOperation = 'add';
+    } else if (e.target.id === 'btn-subtract') {
+      if (mathOperation !== '') calculateAndDisplay();
+      arg1 = Number(display.value);
+      mathOperation = 'subtract';  
+    } else if (e.target.id === 'btn-clear') {
+      arg1 = 0;
+      arg2 = 0;
+      mathOperation = '';
+      display.value = 0;
+    } else if (e.target.id === 'btn-equal') {
+      calculateAndDisplay();
+    }
     previousButtonIsFunction = true;
-    switch (e.target.id) {
-      case 'btn-divide': {
-        arg1 = Number(display.value);
-        mathOperation = 'divide';
-        break;
-      }
-      case 'btn-multiply': {
-        arg1 = Number(display.value);
-        mathOperation = 'multiply';
-        break;
-      }
-      case 'btn-add': {
-        arg1 = Number(display.value);
-        mathOperation = 'add';
-        break;
-      }
-      case 'btn-clear': {
-        arg1 = 0;
-        arg2 = 0;
-        mathOperation = '';
-        display.value = 0;
-        break;
-      }
-      case 'btn-subtract': {
-        arg1 = Number(display.value);
-        mathOperation = 'subtract';
-        break;
-      }
-      case 'btn-equal': {
-        arg2 = Number(display.value);
-        display.value = operate(mathOperation, arg1, arg2);
-        break;
-      }
-    }  
-  }
+  } 
 });
+
+function calculateAndDisplay() {
+  arg2 = Number(display.value);
+  display.value = operate(mathOperation, arg1, arg2);
+}
