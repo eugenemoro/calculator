@@ -49,19 +49,19 @@ buttons.addEventListener('click', (e) =>{
     previousButtonIsFunction = false;
   } else if (e.target.classList.contains('btn-function')) {  
     if (e.target.id === 'btn-divide') {
-      if (mathOperation !== '') calculateAndDisplay();
+      if (mathOperation !== '' && !previousButtonIsFunction) calculateAndDisplay();
       arg1 = Number(display.value);
       mathOperation = 'divide';
     } else if (e.target.id === 'btn-multiply') {
-      if (mathOperation !== '') calculateAndDisplay();
+      if (mathOperation !== '' && !previousButtonIsFunction) calculateAndDisplay();
       arg1 = Number(display.value);
       mathOperation = 'multiply';
     } else if (e.target.id === 'btn-add') {
-      if (mathOperation !== '') calculateAndDisplay();
+      if (mathOperation !== '' && !previousButtonIsFunction) calculateAndDisplay();
       arg1 = Number(display.value);
       mathOperation = 'add';
     } else if (e.target.id === 'btn-subtract') {
-      if (mathOperation !== '') calculateAndDisplay();
+      if (mathOperation !== '' && !previousButtonIsFunction) calculateAndDisplay();
       arg1 = Number(display.value);
       mathOperation = 'subtract';  
     } else if (e.target.id === 'btn-clear') {
@@ -71,8 +71,16 @@ buttons.addEventListener('click', (e) =>{
       display.value = 0;
     } else if (e.target.id === 'btn-equal') {
       if (mathOperation) calculateAndDisplay();
+    } else if (e.target.id === 'btn-backspace') {
+      if (!previousButtonIsFunction){
+        if (display.value.length > 1) {
+          display.value = display.value.slice(0, display.value.length - 1);
+        } else {
+          display.value = 0;
+        }
+      }
     }
-    previousButtonIsFunction = true;
+    if (!(e.target.id === 'btn-backspace')) previousButtonIsFunction = true;
   } 
 });
 
@@ -80,6 +88,6 @@ function calculateAndDisplay() {
   arg2 = Number(display.value);
   let result = operate(mathOperation, arg1, arg2);
   //to round the result
-  if (result.toString().split('.')[1].length >= 10) result = Math.round(result * 100000000) / 100000000; 
+  if (result.toString().includes('.') && result.toString().split('.')[1].length >= 10) result = Math.round(result * 100000000) / 100000000; 
   display.value = result;
 }

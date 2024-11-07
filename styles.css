@@ -30,7 +30,8 @@
   flex-direction: column;
 }
 
-.btn-function {
+.btn-function,
+.btn-input {
   flex-grow: 1;
 }
 
