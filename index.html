@@ -7,7 +7,41 @@
   <title>Calculator</title>
 </head>
 <body>
-  
+  <div id="container">
+    <div id="output">
+      <input id="display" type="text" value="0" readonly>
+    </div>
+    <div id="buttons">
+      <div class="buttons-column">
+        <button class="btn-input" value="7" id="btn-7">7</button>
+        <button class="btn-input" value="4" id="btn-4">4</button>
+        <button class="btn-input" value="1" id="btn-1">1</button>
+        <button class="btn-input" value="0" id="btn-0">0</button>
+      </div>
+      <div class="buttons-column">
+        <button class="btn-input" value="8" id="btn-8">8</button>
+        <button class="btn-input" value="5" id="btn-5">5</button>
+        <button class="btn-input" value="2" id="btn-2">2</button>
+        <button class="btn-input" value="00" id="btn-00">00</button>
+      </div>
+      <div class="buttons-column">
+        <button class="btn-input" value="9" id="btn-9">9</button>
+        <button class="btn-input" value="6" id="btn-6">6</button>
+        <button class="btn-input" value="3" id="btn-3">3</button>
+        <button class="btn-input" value="." id="btn-dot">.</button>
+      </div>
+      <div class="buttons-column">
+        <button class="btn-function" id="btn-divide">➗</button>
+        <button class="btn-function" id="btn-multiply">✖️</button>
+        <button class="btn-function" id="btn-add">➕</button>
+      </div>
+      <div class="buttons-column">
+        <button class="btn-function" id="btn-clear">🆑</button>
+        <button class="btn-function" id="btn-subtract">➖</button>
+        <button class="btn-function" id="btn-equal">🟰</button>
+      </div>
+    </div>
+  </div>
 </body>
 <script src="script.js"></script>
 </html>

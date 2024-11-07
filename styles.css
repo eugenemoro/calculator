@@ -4,3 +4,38 @@
   margin: 0;
   padding: 0;
 }
+
+#container {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#output {
+  margin-bottom: 4px;
+}
+
+#output input {
+  font-size: large;
+}
+
+#buttons {
+  display: flex;
+}
+
+.buttons-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-function {
+  flex-grow: 1;
+}
+
+button {
+  font-size: large;
+  margin: 2px;
+  width: 32px;
+}
